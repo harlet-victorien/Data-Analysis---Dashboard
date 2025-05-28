@@ -32,13 +32,10 @@ def create_custom_parameter_testing_section(analyzer):
         # Create completion pie chart
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.subheader("Expected Value")
-            st.markdown(f"{round(value, 4)}")
+            st.metric("Expected Value", f"{round(value, 4)}")
 
         with col2:
-            st.subheader("Rate of transition")
-            st.markdown(f"### {round(rate, 4)}")
-
+            st.metric("Multiplier", f"{round(test_y / test_x, 4)}")
         with col3:
             st.markdown("**Rate of transition**")
             create_completion_pie_chart(y_count, x_count, test_x, test_y)
@@ -97,6 +94,7 @@ def create_expected_value_calculator_section(analyzer):
     calc_stop_loss = st.slider("Stop Loss for Calculation", 0.0, 1.0, 0.3, 0.1)
     calc_multiplier = st.slider("Multiplier", 0.1, 5.0, 1.0, 0.1)
     calc_rate = st.slider("Rate", 0.0, 1.0, 0.5, 0.01)
-    
-    expected_val = analyzer.expected_value(calc_stop_loss, calc_multiplier, calc_rate)
-    st.metric("Expected Value", f"{expected_val:.4f}")
+
+    if st.button("Calculate Expected Value", key="calc_button_custom"):
+        expected_val = analyzer.expected_value(calc_stop_loss, calc_multiplier, calc_rate)
+        st.metric("Expected Value", f"{expected_val:.4f}")
