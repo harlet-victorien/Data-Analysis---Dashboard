@@ -1,0 +1,8 @@
+COLORS = {
+            'base' : "dark",
+            'primaryColor' : "#4E8AE6",
+            'backgroundColor' : "#1E1E1E",
+            'secondaryBackgroundColor' : "#2D2D2D",
+            'textColor' : "#FFFFFF",
+            'font' : "sans serif",
+        }

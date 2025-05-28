@@ -2,6 +2,7 @@ import streamlit as st
 import streamlit_shadcn_ui as ui
 import plotly.express as px
 import plotly.graph_objects as go
+from globals import COLORS
 
 def create_parameter_analysis_tab(analyzer):
     """Create parameter analysis tab content"""
@@ -29,7 +30,7 @@ def create_custom_parameter_testing_section(analyzer):
         value, x_count, y_count = analyzer.find_value(test_x, test_y)
         
         # Create completion pie chart
-        col1, col2 = st.columns(2)
+        col1, col2, col3 = st.columns(3)
         with col1:
             st.subheader("Expected Value")
             st.markdown(f"{round(value, 4)}")
@@ -37,45 +38,51 @@ def create_custom_parameter_testing_section(analyzer):
         with col2:
             st.subheader("Rate of transition")
             st.markdown(f"### {round(rate, 4)}")
-        create_completion_pie_chart(y_count, x_count)
+
+        with col3:
+            st.markdown("**Rate of transition**")
+            create_completion_pie_chart(y_count, x_count, test_x, test_y)
         
     st.markdown('</div>', unsafe_allow_html=True)
 
-def create_completion_pie_chart(y_value, x_value):
+def create_completion_pie_chart(y_count, x_count, x_value, y_value):
     """Create a pie chart showing completion ratio of y/x"""
-    if x_value == 0:
+    if x_count == 0:
         st.error("Cannot create pie chart: X value cannot be zero")
         return
     
     # Calculate completion ratio
-    completion_ratio = min(y_value / x_value, 1.0)  # Cap at 100%
+    completion_ratio = min(y_count / x_count, 1.0)  # Cap at 100%
     remaining_ratio = 1.0 - completion_ratio
     
     # Prepare data for pie chart
+    labels = [f"{y_value} attained", f"{y_value} not attained"]
     values = [completion_ratio, remaining_ratio]
-    colors = ['#00cc88', '#f0f2f6']
+    colors = [COLORS['primaryColor'], COLORS['secondaryBackgroundColor']]
     
     # Create pie chart
     fig = go.Figure(data=[go.Pie(
+        labels=labels,
         values=values,
         hole=0.4,  # Creates a donut chart
         marker_colors=colors,
         textinfo='none',
         textfont_size=12,
         hovertemplate='<b>%{label}</b><br>Value: %{value:.2%}<br>Count: %{customdata}<extra></extra>',
-        customdata=[f'{y_value:,}', f'{x_value - y_value:,}' if y_value < x_value else '0'],
+        customdata=[f'{y_count:,}', f'{x_count - y_count:,}' if y_count < x_count else '0'],
     )])
     
     # Update layout
     fig.update_layout(
-        
         showlegend=False,
-        height=400,
+        height=150,
+        margin=dict(l=20, r=20, t=20, b=20),  # Reduce margins
+        paper_bgcolor='rgba(0,0,0,0)',  # Transparent background
         annotations=[
             dict(
                 text=f'{completion_ratio:.1%}',
                 x=0.5, y=0.5,
-                font_size=20,
+                font_size=12,
                 showarrow=False
             )
         ]
