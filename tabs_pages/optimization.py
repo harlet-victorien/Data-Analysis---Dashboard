@@ -3,6 +3,7 @@ import streamlit as st
 def create_optimization_tab(analyzer, config):
     """Create optimization tab content"""
     st.header("Parameter Optimization")
+    st.write("Goes through all possible values of X and Y to find the optimal parameters for the best expected value.")
     
     # Custom styled optimization button
     st.markdown('<div class="optimization-button">', unsafe_allow_html=True)

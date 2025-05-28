@@ -37,7 +37,14 @@ def create_custom_parameter_testing_section(analyzer):
         with col2:
             st.metric("Multiplier", f"{round(test_y / test_x, 4)}")
         with col3:
-            st.markdown("**Rate of transition**")
+            st.markdown(
+                """
+                <div style='text-align: center'>
+                    <p>Rate of transition</p>
+                </div>
+                """, 
+                unsafe_allow_html=True
+            )
             create_completion_pie_chart(y_count, x_count, test_x, test_y)
         
     st.markdown('</div>', unsafe_allow_html=True)

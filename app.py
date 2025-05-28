@@ -19,8 +19,7 @@ def main():
             stop_loss=config['stop_loss'], 
             with_scam=config['with_scam']
         )
-        st.success(f"✅ Data loaded successfully! Found {len(analyzer.data)} data points.")
-        
+                
         # Create tabs with analyzer and config
         create_tabs(analyzer, config)
         

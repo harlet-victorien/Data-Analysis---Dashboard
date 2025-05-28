@@ -41,7 +41,7 @@ def create_footer():
     st.markdown(
         """
         <div style='text-align: center'>
-            <p>Investment Analyzer Dashboard | Built with Streamlit</p>
+            <p>Dashboard built by HV</p>
         </div>
         """, 
         unsafe_allow_html=True

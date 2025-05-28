@@ -13,11 +13,8 @@ def configure_page():
     st.markdown(get_custom_css(), unsafe_allow_html=True)
     
     # Title and description
-    st.title("📈 Investment Analyzer Dashboard")
-    st.markdown("""
-    This app analyzes investment data from CSV files and helps find optimal parameters for investment strategies.
-    Upload a CSV file or use the default test.csv to get started.
-    """)
+    st.title("📈 MemeCoin Data Dashboard")
+    
 
 def get_custom_css():
     """Return custom CSS for styling all columns automatically"""
