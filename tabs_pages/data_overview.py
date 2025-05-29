@@ -41,7 +41,9 @@ def display_data_distribution(analyzer):
     st.subheader("Value Distribution")
     
     values = [item[0] for item in analyzer.data if item[0] < 2e6]
-    fig = px.histogram(x=values, nbins=50, title="Distribution of Investment Values")
+    fig = px.histogram(x=values, nbins=50, title="Distribution of Investment Values", 
+                       labels={'x': 'Value', 'y': 'Frequency'},
+                       color_discrete_sequence=[COLORS['primaryColor']])
     fig.update_layout(
         xaxis_title="Value", 
         yaxis_title="Frequency",
