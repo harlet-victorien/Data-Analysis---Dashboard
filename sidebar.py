@@ -31,7 +31,7 @@ def create_file_upload_section():
     )
     
     if uploaded_file is None:
-        file_path = "test.csv"
+        file_path = "data/test.csv"
         st.sidebar.info("Using default test.csv file")
     else:
         # Save uploaded file temporarily

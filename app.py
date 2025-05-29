@@ -2,7 +2,7 @@ import streamlit as st
 from config import configure_page
 from sidebar import create_sidebar
 from tabs import create_tabs
-from tim import InvestmentAnalyzer
+from utils.tim import InvestmentAnalyzer
 
 def main():
     """Main application entry point"""
