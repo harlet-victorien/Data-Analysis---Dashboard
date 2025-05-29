@@ -1,4 +1,5 @@
 import streamlit as st
+from globals import COLORS
 
 def create_sidebar():
     """Create sidebar with configuration options"""

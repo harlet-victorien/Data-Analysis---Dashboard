@@ -35,10 +35,11 @@ def create_custom_parameter_testing_section(analyzer):
 
         with col2:
             st.metric("Multiplier", f"{round(test_y / test_x, 4)}")
+        
         with col3:
             st.markdown(
-                """
-                <div style='text-align: center'>
+                f"""
+                <div style='text-align: center; color: {COLORS['textColor']}'>
                     <p>Rate of transition</p>
                 </div>
                 """, 
@@ -81,11 +82,14 @@ def create_completion_pie_chart(y_count, x_count, x_value, y_value):
         height=150,
         margin=dict(l=20, r=20, t=20, b=20),  # Reduce margins
         paper_bgcolor='rgba(0,0,0,0)',  # Transparent background
+        plot_bgcolor='rgba(0,0,0,0)',
+        font_color=COLORS['textColor'],
         annotations=[
             dict(
                 text=f'{completion_ratio:.1%}',
                 x=0.5, y=0.5,
                 font_size=12,
+                font_color=COLORS['textColor'],
                 showarrow=False
             )
         ]

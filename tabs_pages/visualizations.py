@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from globals import COLORS
 
 def create_visualizations_tab(analyzer, config):
     """Create visualizations tab content"""
@@ -116,8 +117,7 @@ def generate_parameter_heatmap(analyzer, config):
                 return
             
             pivot_table = df_heatmap.pivot(index='Y', columns='X', values='Value')
-            
-            # Create heatmap
+              # Create heatmap
             fig = px.imshow(
                 pivot_table.values,
                 x=pivot_table.columns,
@@ -129,7 +129,10 @@ def generate_parameter_heatmap(analyzer, config):
             fig.update_layout(
                 xaxis_title="X Parameter",
                 yaxis_title="Y Parameter",
-                height=600
+                height=600,
+                plot_bgcolor=COLORS['transparent'],  # Transparent background
+                paper_bgcolor=COLORS['transparent'],
+                font_color=COLORS['textColor']
             )
             st.plotly_chart(fig, use_container_width=True)
             
@@ -237,8 +240,7 @@ def generate_3d_surface_plot(analyzer, config):
                     colorscale='viridis',
                     showscale=True,
                     colorbar=dict(title="Expected Value")
-                )
-            )])
+                )            )])
             
             fig.update_layout(
                 title="3D Scatter Plot of Expected Values",
@@ -248,9 +250,13 @@ def generate_3d_surface_plot(analyzer, config):
                     zaxis_title="Expected Value",
                     camera=dict(
                         eye=dict(x=1.2, y=1.2, z=0.8)
-                    )
+                    ),
+                    bgcolor=COLORS['transparent']  # Transparent background
                 ),
-                height=700
+                height=1100,
+                plot_bgcolor=COLORS['transparent'],  # Transparent background
+                paper_bgcolor=COLORS['transparent'],
+                font_color=COLORS['textColor']
             )
             st.plotly_chart(fig, use_container_width=True)
             

@@ -1,4 +1,5 @@
 import streamlit as st
+from globals import COLORS
 
 def create_optimization_tab(analyzer, config):
     """Create optimization tab content"""

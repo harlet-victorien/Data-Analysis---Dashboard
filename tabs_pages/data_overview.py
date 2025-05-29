@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+from globals import COLORS
 
 def create_data_overview_tab(analyzer):
     """Create data overview tab content"""
@@ -41,7 +42,13 @@ def display_data_distribution(analyzer):
     
     values = [item[0] for item in analyzer.data if item[0] < 2e6]
     fig = px.histogram(x=values, nbins=50, title="Distribution of Investment Values")
-    fig.update_layout(xaxis_title="Value", yaxis_title="Frequency")
+    fig.update_layout(
+        xaxis_title="Value", 
+        yaxis_title="Frequency",
+        paper_bgcolor=COLORS['transparent'],  # Transparent background
+        plot_bgcolor=COLORS['transparent'],
+        font_color=COLORS['textColor']
+    )
     st.plotly_chart(fig, use_container_width=True)
 
 def display_data_sample(analyzer):

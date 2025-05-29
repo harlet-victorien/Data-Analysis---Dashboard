@@ -4,6 +4,7 @@ from tabs_pages.parameter_analysis import create_parameter_analysis_tab
 from tabs_pages.optimization import create_optimization_tab
 from tabs_pages.visualizations import create_visualizations_tab
 from config import get_custom_css
+from globals import COLORS
 
 def create_tabs(analyzer, config):
     """Create main tabs for the application"""
@@ -39,8 +40,8 @@ def create_footer():
     """Create application footer"""
     st.markdown("---")
     st.markdown(
-        """
-        <div style='text-align: center'>
+        f"""
+        <div style='text-align: center; color: {COLORS['textColor']}'>
             <p>Dashboard built by HV</p>
         </div>
         """, 
