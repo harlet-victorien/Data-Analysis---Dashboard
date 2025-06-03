@@ -25,20 +25,20 @@ def create_sidebar():
 
 def create_file_upload_section():
     """Create file upload section"""
-    uploaded_file = st.sidebar.file_uploader(
+    """ uploaded_file = st.sidebar.file_uploader(
         "Choose a CSV file", 
         type="csv",
         help="Upload a CSV file with investment data"
-    )
+    ) """
     
-    if uploaded_file is None:
-        file_path = "data/test.csv"
-        st.sidebar.info("Using default test.csv file")
-    else:
+    #if uploaded_file is None:
+    file_path = "data/test.csv"
+    #st.sidebar.info("Using default test.csv file")
+    """ else:
         # Save uploaded file temporarily
         file_path = f"temp_{uploaded_file.name}"
         with open(file_path, "wb") as f:
-            f.write(uploaded_file.getbuffer())
+            f.write(uploaded_file.getbuffer()) """
     
     return file_path
 
